@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa História</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;700&family=Parisienne&display=swap');
+        
+        :root {
+            --color-light-bg: #FFFAFA; 
+            --color-dark-accent: #B91C1C; 
+            --color-button-main: #991B1B; 
+            --color-text-dark: #333333;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--color-light-bg); 
+            color: var(--color-text-dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 95%;
+            padding: 8px; 
+            background-color: var(--color-dark-accent);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); 
+            text-align: center;
+        }
+
+        .content-wrapper {
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 18px; 
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, #contador {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-dark-accent);
+        }
+
+        .script-text {
+            font-family: 'Parisienne', cursive;
+            font-size: 2.2rem;
+            color: var(--color-button-main);
+            display: block; 
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+        }
+
+        .btn-nav {
+            background-color: transparent;
+            color: var(--color-dark-accent);
+            border: 1px solid var(--color-dark-accent);
+            font-size: 0.8rem;
+        }
+
+        .btn-nav.active {
+            background-color: var(--color-dark-accent);
+            color: white;
+        }
+
+        #contador {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin: 10px 0;
+        }
+
+        .audio-player-container {
+            margin: 15px 0;
+            padding: 10px;
+            background: #FEF2F2;
+            border-radius: 12px;
+        }
+
+        .audio-player-container audio {
+            width: 100%;
+            height: 35px;
+        }
+
+        .chapter-content {
+            text-align: left;
+            line-height: 1.7;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #resetBtn {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            background: rgba(0,0,0,0.1);
+            padding: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .instruction-box {
+            border: 2px solid var(--color-button-main);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            background-color: #FFF5F5;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(185, 28, 28, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); }
+        }
+
+        strong {
+            color: var(--color-dark-accent);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="resetBtn" onclick="resetApp()">Resetar (Teste)</div>
+
+    <div class="container">
+        <!-- TELA INICIAL (NOME) -->
+        <div id="screen-auth" class="p-8">
+            <h1 class="text-3xl text-white font-bold mb-4 uppercase tracking-tighter">Acesso ao Nosso Mundo</h1>
+            <p class="text-white mb-6">Identifique-se para liberar as memórias.</p>
+            <input type="text" id="inputNome" placeholder="Seu nome mais lindo..." class="w-full p-3 rounded-lg border-2 border-red-200 mb-4 focus:outline-none focus:border-white text-center">
+            <button onclick="submitName()" class="w-full btn bg-white text-red-700 hover:bg-red-50">Entrar</button>
+        </div>
+
+        <!-- TELA PRINCIPAL -->
+        <div id="screen-main" class="hidden">
+            <div class="content-wrapper">
+                
+                <!-- Navegação de Capítulos -->
+                <div class="flex justify-center space-x-2 mb-6">
+                    <button onclick="showChapter(1)" id="btnCap1" class="btn btn-nav active">Capítulo 1</button>
+                    <button onclick="showChapter(2)" id="btnCap2" class="btn btn-nav">Capítulo 2</button>
+                </div>
+
+                <div id="contador-box" class="mb-4">
+                    <p class="text-xs text-gray-500 uppercase tracking-widest text-center">Desde a minha certeza em 18/04/2026:</p>
+                    <div id="contador" class="text-center">Calculando...</div>
+                </div>
+
+                <div class="audio-player-container">
+                    <audio id="bgMusic" controls loop>
+                        <source src="laranjacomazul.m4a" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <!-- Conteúdo Capítulo 1 -->
+                <div id="cap1" class="chapter-content">
+                    <span class="script-text text-center mb-6">Para <span class="nome-dinamico">...</span>, do seu Eliazar</span>
+                    
+                    <p class="mb-4">Nós já nos conhecíamos há muito tempo, sempre com muita coisa em comum, mas parecia que o tempo nunca era o certo. Você sempre sumia, falava pouco, e eu ficava aqui na espera. Mas na última semana, algo mudou. A gente se aproximou de um jeito diferente, começamos a estudar juntos, marcando tempo para um motivar o outro.</p>
+                    
+                    <p class="mb-4">Tudo começou a caminhar de verdade quando eu, com meu jeito, ofereci aquelas Ritalinas para te ajudar no foco dos estudos. Combinamos de sair, mas confesso que quase desisti: você sumiu um dia antes e no próprio dia do encontro. Achei mesmo que ia cancelar, mas o destino tinha outros planos.</p>
+                    
+                    <p class="mb-4">O dia estava chuvoso e a gente torcendo para o céu abrir. E não é que abriu? O encontro era para as 19:10 (já contando com o seu atraso, claro haha). Quando fui te buscar, ainda tivemos aquele contratempo clássico de cada um estar em uma esquina diferente, mas finalmente nos encontramos.</p>
+                    
+                    <p class="mb-4">O plano era Murici, mas a chuva na estrada nos fez parar em Branquinha. Te perguntei se estava com frio, você disse que sim e eu parei para te dar minha jaqueta. Você não quis de primeira, então sugeri explorarmos a cidade. Parei num posto, abasteci e usei a desculpa para perguntar por um barzinho. Foi lá que conhecemos o Pedrinho na porta, e a conversa fluiu tanto que parecia que éramos amigos de infância.</p>
+                    
+                    <p class="mb-4">O bar estava vazio e eu, brincalhão, disse que tinha alugado o lugar só para nós dois — e ainda fiz o Pedrinho confirmar a história! Enquanto você bebia, eu não conseguia parar de te olhar. Pensava no quanto eu era sortudo e no quanto você estava linda. Trocamos muito carinho e a noite estava perfeita.</p>
+                    
+                    <p class="mb-4">Mas o momento que me paralisou foi quando, brincando com o Pedrinho, eu disse: "Tá vendo? E depois essa mulher ainda diz que gosta de mim". Você deu aquele sorriso maravilhoso e soltou um: <strong>"Gosto não, amo!"</strong>. Eu fiquei sem reação, completamente desarmado.</p>
+                    
+                    <p class="mb-4">A noite continuou épica: você queria um drink de vinho com leite condensado. Não tinha vinho? O dono do bar buscou em casa. Não tinha leite condensado? O Pedrinho fez a dona do mercado ao lado abrir a loja às 21h de um sábado só para resolver isso para mim. Voltamos para União debaixo de chuva, eu me molhei todo, mas com você usando minha jaqueta e a certeza no meu peito de que era você quem eu queria. Aquela noite foi o ponto de partida para eu decidir que faria de tudo por você.</p>
+                    
+                    <div class="text-center mt-6">
+                        <button onclick="showChapter(2)" class="text-red-600 font-bold underline">Ler Capítulo 2 (O Domingo e o Agora) →</button>
+                    </div>
+                </div>
+
+                <!-- Conteúdo Capítulo 2 -->
+                <div id="cap2" class="chapter-content hidden">
+                    <span class="script-text text-center mb-6">A certeza que só aumenta...</span>
+                    
+                    <p class="mb-4">No domingo, dia 19, eu tinha aquela viagem de moto marcada com meus amigos, mas a verdade é que eu não conseguia tirar o dia anterior da cabeça. Sabe aquelas Ritalinas que eu deveria ter levado? Pois é... eu "esqueci" propositalmente. Eu precisava de uma desculpa, qualquer uma, para te ver de novo o mais rápido possível.</p>
+                    
+                    <p class="mb-4">Fomos conversando durante o dia e você disse que nos veríamos rapidinho antes de você ir para a chácara com sua família. Quando cheguei para te buscar e te levar até lá, você estava maravilhosa de novo. Você subiu na moto e fomos. Eu até brinquei dizendo que não gostava de andar com você na garupa porque tinha que dirigir "consciente" demais... mal sabia você que o motivo real era o medo de que qualquer coisa acontecesse com você. Eu já me preocupava demais.</p>
+                    
+                    <p class="mb-4">Chegando na chácara, você perguntou se eu queria entrar. Eu disse que sim, mesmo estando de bermuda, chinelo e camisa de time — nada apresentável para conhecer a família, e ainda por cima com cara de cansaço. Mas o destino deu uma segurada: você mesma acabou cancelando o convite para não "roubar a atenção" do aniversário do seu primo. Confesso que fiquei um pouco chateado na hora, até forcei a barra, mas aquela sensação passou rápido. Como eu poderia ficar bravo por besteira com a mulher por quem eu já estava ficando louco?</p>
+                    
+                    <p class="mb-4">Hoje é segunda-feira, dia 20, e enquanto faço os ajustes finais aqui nesse site, o meu coração está a mil. Eu já falei de você para a minha mãe — ela até foi te seguir no Instagram! Eu te disse que tenho uma surpresa para amanhã, feriado do dia 21... e agora que você leu até aqui, o site cumpriu o papel dele de te mostrar o quanto você é importante para mim.</p>
+
+                    <div class="instruction-box text-center">
+                        <p class="text-xl text-red-700 font-bold uppercase tracking-tight">Guarde o celular e olha pra mim...</p>
+                    </div>
+                    
+                    <div class="text-center mt-12">
+                        <button onclick="showChapter(1)" class="text-gray-400 text-xs underline">← Voltar para o Capítulo 1</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DATA DA CERTEZA: 18/04/2026 às 20:00
+        const START_DATE = new Date('2026-04-18T20:00:00');
+        
+        window.onload = () => {
+            const salvo = localStorage.getItem('nomeDela');
+            if(salvo) {
+                document.getElementById('screen-auth').classList.add('hidden');
+                document.getElementById('screen-main').classList.remove('hidden');
+                atualizarNomesDinamicos(salvo);
+                startCounter();
+            }
+        }
+
+        function submitName() {
+            const nome = document.getElementById('inputNome').value.trim();
+            if(nome.length > 2) {
+                localStorage.setItem('nomeDela', nome);
+                document.getElementById('screen-auth').classList.add('hidden');
+                document.getElementById('screen-main').classList.remove('hidden');
+                atualizarNomesDinamicos(nome);
+                startCounter();
+            }
+        }
+
+        function atualizarNomesDinamicos(nome) {
+            const elementos = document.querySelectorAll('.nome-dinamico');
+            elementos.forEach(el => el.textContent = nome);
+        }
+
+        function showChapter(n) {
+            document.getElementById('cap1').classList.add('hidden');
+            document.getElementById('cap2').classList.add('hidden');
+            document.getElementById('btnCap1').classList.remove('active');
+            document.getElementById('btnCap2').classList.remove('active');
+            
+            document.getElementById('cap' + n).classList.remove('hidden');
+            document.getElementById('btnCap' + n).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function startCounter() {
+            setInterval(() => {
+                const now = new Date();
+                const diff = now - START_DATE;
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const m = Math.floor((diff / 1000 / 60) % 60);
+                const s = Math.floor((diff / 1000) % 60);
+                
+                if (diff < 0) {
+                    document.getElementById('contador').innerText = `Contagem começa em breve...`;
+                } else {
+                    document.getElementById('contador').innerText = `${d} dias, ${h}h ${m}m ${s}s`;
+                }
+            }, 1000);
+        }
+
+        function resetApp() {
+            localStorage.clear();
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
