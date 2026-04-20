@@ -6,216 +6,391 @@
     <title>Nossa História</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;700&family=Parisienne&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;700&family=Parisienne&display=swap');
         
         :root {
-            --color-light-bg: #FFFAFA; 
-            --color-dark-accent: #B91C1C; 
-            --color-button-main: #991B1B; 
-            --color-text-dark: #333333;
+            --primary: #B91C1C;
+            --primary-light: #FEE2E2;
+            --secondary: #991B1B;
+            --accent: #E53E3E;
+            --bg-gradient: radial-gradient(circle at center, #fffafa 0%, #fff0f0 100%);
+            --glass: rgba(255, 255, 255, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--color-light-bg); 
-            color: var(--color-text-dark);
+            background: var(--bg-gradient);
+            color: #2D3748;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Fundo Animado */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
             max-width: 800px;
-            width: 95%;
-            padding: 8px; 
-            background-color: var(--color-dark-accent);
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); 
-            text-align: center;
+            width: 100%;
+            z-index: 10;
+        }
+
+        /* Glassmorphism Card */
+        .main-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            box-shadow: 0 40px 100px -20px rgba(185, 28, 28, 0.12);
+            overflow: hidden;
         }
 
         .content-wrapper {
-            background-color: #ffffff;
-            padding: 35px;
-            border-radius: 18px; 
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
+            padding: 60px 50px;
+        }
+
+        @media (max-width: 640px) {
+            .content-wrapper { padding: 40px 25px; }
         }
 
         h1, h2, #contador {
             font-family: 'Playfair Display', serif;
-            color: var(--color-dark-accent);
+            color: var(--primary);
         }
 
         .script-text {
             font-family: 'Parisienne', cursive;
-            font-size: 2.2rem;
-            color: var(--color-button-main);
-            display: block; 
+            font-size: 3rem;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
         }
 
-        .btn {
-            transition: all 0.3s ease;
-            cursor: pointer;
-            padding: 12px 25px;
-            border-radius: 12px;
+        /* Botão Premium com Brilho */
+        .btn-premium {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 25px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            box-shadow: 0 15px 30px -10px rgba(153, 27, 27, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: none;
+            cursor: pointer;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px -10px rgba(153, 27, 27, 0.6);
         }
 
         .btn-nav {
-            background-color: transparent;
-            color: var(--color-dark-accent);
-            border: 1px solid var(--color-dark-accent);
+            padding: 10px 25px;
+            border-radius: 15px;
             font-size: 0.8rem;
+            font-weight: 700;
+            color: #A0AEC0;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .btn-nav.active {
-            background-color: var(--color-dark-accent);
-            color: white;
+            color: var(--primary);
+            background: rgba(185, 28, 28, 0.05);
+        }
+
+        .btn-nav.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 10px;
         }
 
         #contador {
-            font-size: 1.5rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            margin: 10px 0;
-        }
-
-        .audio-player-container {
+            letter-spacing: -1px;
             margin: 15px 0;
-            padding: 10px;
-            background: #FEF2F2;
-            border-radius: 12px;
         }
 
-        .audio-player-container audio {
-            width: 100%;
-            height: 35px;
+        /* Visualizador de Áudio Animado */
+        .audio-container {
+            background: #fff;
+            border-radius: 30px;
+            padding: 15px 25px;
+            margin: 25px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .visualizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 20px;
+        }
+
+        .bar {
+            width: 3px;
+            background: var(--primary);
+            border-radius: 10px;
+            animation: quiet 1.2s ease-in-out infinite;
+        }
+
+        .bar:nth-child(2) { animation-delay: 0.2s; height: 10px; }
+        .bar:nth-child(3) { animation-delay: 0.4s; height: 15px; }
+        .bar:nth-child(4) { animation-delay: 0.1s; height: 8px; }
+
+        @keyframes quiet {
+            0% { height: 5px; }
+            50% { height: 20px; }
+            100% { height: 5px; }
         }
 
         .chapter-content {
             text-align: left;
-            line-height: 1.7;
-            animation: fadeIn 0.5s ease-in-out;
+            line-height: 1.9;
+            color: #4A5568;
+            font-size: 1.1rem;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        /* Caixa de Instrução Estilo "Selo" */
+        .instruction-box {
+            background: #fff;
+            border: 2px solid var(--primary-light);
+            padding: 40px 30px;
+            border-radius: 40px;
+            margin-top: 50px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .instruction-box .seal {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(185, 28, 28, 0.3);
+        }
+
+        .animate-up {
+            animation: slideUp 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        input {
+            transition: all 0.4s ease;
+            background: #fdfdfd;
+            border: 2px solid transparent;
+        }
+
+        input:focus {
+            background: white;
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .divider span {
+            color: var(--primary-light);
+            font-size: 1.5rem;
+            opacity: 0.5;
         }
 
         #resetBtn {
             position: fixed;
-            bottom: 10px;
-            right: 10px;
-            font-size: 0.7rem;
-            background: rgba(0,0,0,0.1);
-            padding: 5px;
-            border-radius: 4px;
+            bottom: 25px;
+            left: 25px;
+            font-size: 0.6rem;
+            color: #cbd5e0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
-            z-index: 1000;
+            opacity: 0.5;
+            transition: opacity 0.3s;
         }
 
-        .instruction-box {
-            border: 2px solid var(--color-button-main);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 30px;
-            background-color: #FFF5F5;
-            animation: pulse 2s infinite;
+        #resetBtn:hover { opacity: 1; }
+
+        /* Pulse do Selo */
+        .pulse-btn {
+            animation: pulse-red 2s infinite;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.4); }
-            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(185, 28, 28, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); }
-        }
-
-        strong {
-            color: var(--color-dark-accent);
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(185, 28, 28, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); }
         }
     </style>
 </head>
 <body>
 
-    <div id="resetBtn" onclick="resetApp()">Resetar (Teste)</div>
+    <div class="particles" id="particles"></div>
+    <div id="resetBtn" onclick="resetApp()">Dev Reset</div>
 
-    <div class="container">
-        <!-- TELA INICIAL (NOME) -->
-        <div id="screen-auth" class="p-8">
-            <h1 class="text-3xl text-white font-bold mb-4 uppercase tracking-tighter">Acesso ao Nosso Mundo</h1>
-            <p class="text-white mb-6">Identifique-se para liberar as memórias.</p>
-            <input type="text" id="inputNome" placeholder="Seu nome mais lindo..." class="w-full p-3 rounded-lg border-2 border-red-200 mb-4 focus:outline-none focus:border-white text-center">
-            <button onclick="submitName()" class="w-full btn bg-white text-red-700 hover:bg-red-50">Entrar</button>
-        </div>
-
-        <!-- TELA PRINCIPAL -->
-        <div id="screen-main" class="hidden">
-            <div class="content-wrapper">
+    <div class="container animate-up">
+        <div class="main-card">
+            
+            <!-- TELA DE AUTENTICAÇÃO -->
+            <div id="screen-auth" class="content-wrapper">
+                <div class="mb-10 text-center">
+                    <span class="script-text">Olá, seja...</span>
+                    <h1 class="text-5xl font-black mt-2 tracking-tight">BEM-VINDA</h1>
+                </div>
                 
-                <!-- Navegação de Capítulos -->
-                <div class="flex justify-center space-x-2 mb-6">
-                    <button onclick="showChapter(1)" id="btnCap1" class="btn btn-nav active">Capítulo 1</button>
-                    <button onclick="showChapter(2)" id="btnCap2" class="btn btn-nav">Capítulo 2</button>
+                <p class="text-gray-400 mb-10 max-w-sm mx-auto leading-relaxed font-medium text-center">
+                    Por favor, identifique-se com seu nome completo para acessar nossas memórias.
+                </p>
+                
+                <div class="max-w-xs mx-auto">
+                    <input type="text" id="inputNome" 
+                           placeholder="Seu nome completo..." 
+                           class="w-full p-5 rounded-3xl mb-3 text-center text-lg font-bold outline-none shadow-sm">
+                    
+                    <div id="error-msg" class="hidden text-red-500 text-xs mb-6 font-bold uppercase tracking-widest animate-pulse text-center">
+                        Acesso negado. Tente novamente, Isabella.
+                    </div>
+                    
+                    <button onclick="submitName()" class="w-full btn-premium">
+                        Abrir Coração
+                    </button>
+                </div>
+            </div>
+
+            <!-- TELA PRINCIPAL -->
+            <div id="screen-main" class="hidden content-wrapper">
+                
+                <!-- Header -->
+                <div class="flex justify-between items-center mb-10 border-b border-gray-50 pb-6">
+                    <div class="flex space-x-1">
+                        <button onclick="showChapter(1)" id="btnCap1" class="btn-nav active">I</button>
+                        <button onclick="showChapter(2)" id="btnCap2" class="btn-nav">II</button>
+                    </div>
+                    <span class="script-text text-2xl">E ♥ I</span>
                 </div>
 
-                <div id="contador-box" class="mb-4">
-                    <p class="text-xs text-gray-500 uppercase tracking-widest text-center">Desde a minha certeza em 18/04/2026:</p>
-                    <div id="contador" class="text-center">Calculando...</div>
+                <div id="contador-box" class="mb-8 text-center">
+                    <p class="text-[0.6rem] text-gray-400 uppercase font-bold tracking-[0.3em] mb-2">Segundos de Certeza</p>
+                    <div id="contador">0 s</div>
                 </div>
 
-                <div class="audio-player-container">
-                    <audio id="bgMusic" controls loop>
+                <div class="audio-container">
+                    <div class="visualizer" id="visualizer">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                    <audio id="bgMusic" controls loop class="w-full h-8">
                         <source src="laranjacomazul.m4a" type="audio/mpeg">
                     </audio>
                 </div>
 
-                <!-- Conteúdo Capítulo 1 -->
-                <div id="cap1" class="chapter-content">
-                    <span class="script-text text-center mb-6">Para <span class="nome-dinamico">...</span>, do seu Eliazar</span>
+                <!-- Dedicatória Fixa -->
+                <div class="text-center mb-12 animate-up">
+                    <span class="script-text text-3xl">Para <span class="nome-dinamico">Isabella</span>, do seu Eliazar</span>
+                </div>
+
+                <!-- Capítulo 1 -->
+                <div id="cap1" class="chapter-content animate-up">
+                    <div class="mb-10">
+                        <h2 class="text-xs font-black text-gray-300 tracking-[0.4em] uppercase mb-2">Capítulo Um</h2>
+                        <span class="script-text text-4xl">Branquinha</span>
+                    </div>
                     
-                    <p class="mb-4">Nós já nos conhecíamos há muito tempo, sempre com muita coisa em comum, mas parecia que o tempo nunca era o certo. Você sempre sumia, falava pouco, e eu ficava aqui na espera. Mas na última semana, algo mudou. A gente se aproximou de um jeito diferente, começamos a estudar juntos, marcando tempo para um motivar o outro.</p>
+                    <p class="mb-8">Nós já nos conhecíamos há muito tempo, sempre com muita coisa em comum, mas parecia que o tempo nunca era o certo. Você sempre sumia, falava pouco, e eu ficava aqui na espera. Mas na última semana, algo mudou. A gente se aproximou de um jeito diferente, começamos a estudar juntos, marcando tempo para um motivar o outro.</p>
                     
-                    <p class="mb-4">Tudo começou a caminhar de verdade quando eu, com meu jeito, ofereci aquelas Ritalinas para te ajudar no foco dos estudos. Combinamos de sair, mas confesso que quase desisti: você sumiu um dia antes e no próprio dia do encontro. Achei mesmo que ia cancelar, mas o destino tinha outros planos.</p>
+                    <div class="divider"><span>❦</span></div>
                     
-                    <p class="mb-4">O dia estava chuvoso e a gente torcendo para o céu abrir. E não é que abriu? O encontro era para as 19:10 (já contando com o seu atraso, claro haha). Quando fui te buscar, ainda tivemos aquele contratempo clássico de cada um estar em uma esquina diferente, mas finalmente nos encontramos.</p>
+                    <p class="mb-8">Tudo começou a caminhar de verdade quando eu, com meu jeito, ofereci aquelas Ritalinas para te ajudar no foco dos estudos. Combinamos de sair, mas confesso que quase desisti: você sumiu um dia antes e no próprio dia do encontro. Achei mesmo que ia cancelar, mas o destino tinha outros planos.</p>
                     
-                    <p class="mb-4">O plano era Murici, mas a chuva na estrada nos fez parar em Branquinha. Te perguntei se estava com frio, você disse que sim e eu parei para te dar minha jaqueta. Você não quis de primeira, então sugeri explorarmos a cidade. Parei num posto, abasteci e usei a desculpa para perguntar por um barzinho. Foi lá que conhecemos o Pedrinho na porta, e a conversa fluiu tanto que parecia que éramos amigos de infância.</p>
+                    <p class="mb-8">O dia estava chuvoso e a gente torcendo para o céu abrir. E não é que abriu? O encontro era para as 19:10 (já contando com o seu atraso, claro haha). Quando fui te buscar, ainda tivemos aquele contratempo clássico de cada um estar em uma esquina diferente, mas finalmente nos encontramos.</p>
                     
-                    <p class="mb-4">O bar estava vazio e eu, brincalhão, disse que tinha alugado o lugar só para nós dois — e ainda fiz o Pedrinho confirmar a história! Enquanto você bebia, eu não conseguia parar de te olhar. Pensava no quanto eu era sortudo e no quanto você estava linda. Trocamos muito carinho e a noite estava perfeita.</p>
+                    <p class="mb-8">O plano era Murici, mas a chuva na estrada nos fez parar em <strong>Branquinha</strong>. Te perguntei se estava com frio, você disse que sim e eu parei para te dar minha jaqueta. Você não quis de primeira, então sugeri explorarmos a cidade. Parei num posto, abasteci e usei a desculpa para perguntar por um barzinho. Foi lá que conhecemos o Pedrinho na porta, e a conversa fluiu tanto que parecia que éramos amigos de infância.</p>
                     
-                    <p class="mb-4">Mas o momento que me paralisou foi quando, brincando com o Pedrinho, eu disse: "Tá vendo? E depois essa mulher ainda diz que gosta de mim". Você deu aquele sorriso maravilhoso e soltou um: <strong>"Gosto não, amo!"</strong>. Eu fiquei sem reação, completamente desarmado.</p>
+                    <p class="mb-8">O bar estava vazio e eu, brincalhão, disse que tinha alugado o lugar só para nós dois — e ainda fiz o Pedrinho confirmar a história! Enquanto você bebia, eu não conseguia parar de te olhar. Pensava no quanto eu era sortudo e no quanto você estava linda. Trocamos muito carinho e a noite estava perfeita.</p>
                     
-                    <p class="mb-4">A noite continuou épica: você queria um drink de vinho com leite condensado. Não tinha vinho? O dono do bar buscou em casa. Não tinha leite condensado? O Pedrinho fez a dona do mercado ao lado abrir a loja às 21h de um sábado só para resolver isso para mim. Voltamos para União debaixo de chuva, eu me molhei todo, mas com você usando minha jaqueta e a certeza no meu peito de que era você quem eu queria. Aquela noite foi o ponto de partida para eu decidir que faria de tudo por você.</p>
+                    <p class="mb-8">Mas o momento que me paralisou foi quando, brincando com o Pedrinho, eu disse: "Tá vendo? E depois essa mulher ainda diz que gosta de mim". Você deu aquele sorriso maravilhoso e soltou um: <span class="text-red-700 font-bold italic">"Gosto não, amo!"</span>. Eu fiquei sem reação, completamente desarmado.</p>
                     
-                    <div class="text-center mt-6">
-                        <button onclick="showChapter(2)" class="text-red-600 font-bold underline">Ler Capítulo 2 (O Domingo e o Agora) →</button>
+                    <p class="mb-8">A noite continuou épica: o vinho que o dono buscou em casa, o Pedrinho fazendo a dona do mercado abrir às 21h só pelo leite condensado... tudo parecia conspirar. Voltamos para União debaixo de chuva, eu me molhei todo, mas com você usando minha jaqueta e a certeza no meu peito de que era você quem eu queria. Aquela noite foi o ponto de partida para eu decidir que faria de tudo por você.</p>
+                    
+                    <div class="text-center mt-12">
+                        <button onclick="showChapter(2)" class="btn-premium pulse-btn">Próximo Capítulo</button>
                     </div>
                 </div>
 
-                <!-- Conteúdo Capítulo 2 -->
-                <div id="cap2" class="chapter-content hidden">
-                    <span class="script-text text-center mb-6">A certeza que só aumenta...</span>
+                <!-- Capítulo 2 -->
+                <div id="cap2" class="chapter-content hidden animate-up">
+                    <div class="mb-10">
+                        <h2 class="text-xs font-black text-gray-300 tracking-[0.4em] uppercase mb-2">Capítulo Dois</h2>
+                        <span class="script-text text-4xl">A Escolha</span>
+                    </div>
                     
-                    <p class="mb-4">No domingo, dia 19, eu tinha aquela viagem de moto marcada com meus amigos, mas a verdade é que eu não conseguia tirar o dia anterior da cabeça. Sabe aquelas Ritalinas que eu deveria ter levado? Pois é... eu "esqueci" propositalmente. Eu precisava de uma desculpa, qualquer uma, para te ver de novo o mais rápido possível.</p>
+                    <p class="mb-8">No domingo, dia 19, eu tinha aquela viagem de moto marcada com meus amigos, mas a verdade é que eu não conseguia tirar o dia anterior da cabeça. Sabe aquelas Ritalinas que eu deveria ter levado? Pois é... eu "esqueci" propositalmente. Eu precisava de uma desculpa, qualquer uma, para te ver de novo o mais rápido possível.</p>
                     
-                    <p class="mb-4">Fomos conversando durante o dia e você disse que nos veríamos rapidinho antes de você ir para a chácara com sua família. Quando cheguei para te buscar e te levar até lá, você estava maravilhosa de novo. Você subiu na moto e fomos. Eu até brinquei dizendo que não gostava de andar com você na garupa porque tinha que dirigir "consciente" demais... mal sabia você que o motivo real era o medo de que qualquer coisa acontecesse com você. Eu já me preocupava demais.</p>
+                    <p class="mb-8">Fomos conversando durante o dia e você disse que nos veríamos rapidinho antes de você ir para a chácara com sua família. Quando cheguei para te buscar e te levar até lá, você estava maravilhosa de novo. Você subiu na moto e fomos. Eu até brinquei dizendo que não gostava de andar com você na garupa porque tinha que dirigir "consciente" demais... mal sabia você que o motivo real era o medo de que qualquer coisa acontecesse com você.</p>
                     
-                    <p class="mb-4">Chegando na chácara, você perguntou se eu queria entrar. Eu disse que sim, mesmo estando de bermuda, chinelo e camisa de time — nada apresentável para conhecer a família, e ainda por cima com cara de cansaço. Mas o destino deu uma segurada: você mesma acabou cancelando o convite para não "roubar a atenção" do aniversário do seu primo. Confesso que fiquei um pouco chateado na hora, até forcei a barra, mas aquela sensação passou rápido. Como eu poderia ficar bravo por besteira com a mulher por quem eu já estava ficando louco?</p>
+                    <p class="mb-8">Chegando na chácara, você perguntou se eu queria entrar. Eu disse que sim, mesmo estando de bermuda, chinelo e camisa de time — nada apresentável para conhecer a família, e ainda por cima com cara de cansaço. Mas o destino deu uma segurada: você mesma acabou cancelando o convite para não "roubar a atenção". Confesso que fiquei chateado na hora, mas a sensação passou rápido. Como eu poderia ficar bravo com a mulher por quem eu já estava ficando louco?</p>
                     
-                    <p class="mb-4">Hoje é segunda-feira, dia 20, e enquanto faço os ajustes finais aqui nesse site, o meu coração está a mil. Eu já falei de você para a minha mãe — ela até foi te seguir no Instagram! Eu te disse que tenho uma surpresa para amanhã, feriado do dia 21... e agora que você leu até aqui, o site cumpriu o papel dele de te mostrar o quanto você é importante para mim.</p>
+                    <p class="mb-8">Hoje, enquanto faço os ajustes finais aqui nesse site, o meu coração está a mil. Eu já falei de você para a minha mãe — ela até foi te seguir! Eu te disse que tenho uma surpresa para o dia 21... e agora que você leu até aqui, o site cumpriu o papel dele de te mostrar o quanto você é importante.</p>
 
                     <div class="instruction-box text-center">
-                        <p class="text-xl text-red-700 font-bold uppercase tracking-tight">Guarde o celular e olha pra mim...</p>
+                        <div class="seal">♥</div>
+                        <p class="text-3xl text-red-700 font-black uppercase tracking-tighter mb-4">Guarde o celular</p>
+                        <p class="text-xl text-gray-600 font-semibold script-text">e olha bem nos meus olhos agora.</p>
                     </div>
                     
                     <div class="text-center mt-12">
-                        <button onclick="showChapter(1)" class="text-gray-400 text-xs underline">← Voltar para o Capítulo 1</button>
+                        <button onclick="showChapter(1)" class="text-gray-300 text-xs hover:text-red-400 font-bold transition-all">REVER CAPÍTULO 1</button>
                     </div>
                 </div>
 
@@ -224,12 +399,31 @@
     </div>
 
     <script>
-        // DATA DA CERTEZA: 18/04/2026 às 20:00
         const START_DATE = new Date('2026-04-18T20:00:00');
-        
+        const NOME_COMPLETO_ALVO = "Maria Isabella Beserra de Melo";
+
+        // Partículas Flutuantes
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for(let i = 0; i < 40; i++) {
+                const p = document.createElement('div');
+                const isHeart = Math.random() > 0.7;
+                p.innerHTML = isHeart ? '♥' : '•';
+                p.style.position = 'absolute';
+                p.style.color = isHeart ? '#B91C1C' : '#FFDADA';
+                p.style.fontSize = Math.random() * 15 + 5 + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.opacity = Math.random() * 0.4;
+                p.style.animation = `float ${Math.random() * 10 + 10}s infinite linear`;
+                container.appendChild(p);
+            }
+        }
+
         window.onload = () => {
+            createParticles();
             const salvo = localStorage.getItem('nomeDela');
-            if(salvo) {
+            if(salvo && salvo.toLowerCase() === NOME_COMPLETO_ALVO.toLowerCase()) {
                 document.getElementById('screen-auth').classList.add('hidden');
                 document.getElementById('screen-main').classList.remove('hidden');
                 atualizarNomesDinamicos(salvo);
@@ -238,19 +432,29 @@
         }
 
         function submitName() {
-            const nome = document.getElementById('inputNome').value.trim();
-            if(nome.length > 2) {
-                localStorage.setItem('nomeDela', nome);
+            const nomeInput = document.getElementById('inputNome').value.trim();
+            const errorEl = document.getElementById('error-msg');
+            
+            if(nomeInput.toLowerCase() === NOME_COMPLETO_ALVO.toLowerCase()) {
+                localStorage.setItem('nomeDela', nomeInput);
                 document.getElementById('screen-auth').classList.add('hidden');
                 document.getElementById('screen-main').classList.remove('hidden');
-                atualizarNomesDinamicos(nome);
+                atualizarNomesDinamicos(nomeInput);
                 startCounter();
+                errorEl.classList.add('hidden');
+            } else {
+                errorEl.classList.remove('hidden');
             }
         }
 
         function atualizarNomesDinamicos(nome) {
+            // Se for o nome completo alvo, usamos Isabella por padrão
+            let displayName = "Isabella";
+            if (nome.toLowerCase() !== NOME_COMPLETO_ALVO.toLowerCase()) {
+                displayName = nome.split(' ')[0];
+            }
             const elementos = document.querySelectorAll('.nome-dinamico');
-            elementos.forEach(el => el.textContent = nome);
+            elementos.forEach(el => el.textContent = displayName);
         }
 
         function showChapter(n) {
@@ -268,15 +472,13 @@
             setInterval(() => {
                 const now = new Date();
                 const diff = now - START_DATE;
-                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                const m = Math.floor((diff / 1000 / 60) % 60);
-                const s = Math.floor((diff / 1000) % 60);
                 
                 if (diff < 0) {
-                    document.getElementById('contador').innerText = `Contagem começa em breve...`;
+                    document.getElementById('contador').innerText = `O tempo parou para nós...`;
                 } else {
-                    document.getElementById('contador').innerText = `${d} dias, ${h}h ${m}m ${s}s`;
+                    const totalSeconds = Math.floor(diff / 1000);
+                    // Formata com separador de milhar para facilitar a leitura
+                    document.getElementById('contador').innerText = `${totalSeconds.toLocaleString()} s`;
                 }
             }, 1000);
         }
@@ -285,6 +487,21 @@
             localStorage.clear();
             window.location.reload();
         }
+
+        // Lógica de animação das barras de áudio
+        const audio = document.getElementById('bgMusic');
+        const bars = document.querySelectorAll('.bar');
+        audio.onplay = () => bars.forEach(b => b.style.animationPlayState = 'running');
+        audio.onpause = () => bars.forEach(b => b.style.animationPlayState = 'paused');
     </script>
+
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); }
+            33% { transform: translateY(-30vh) translateX(20px) rotate(120deg); }
+            66% { transform: translateY(-60vh) translateX(-20px) rotate(240deg); }
+            100% { transform: translateY(-100vh) translateX(0) rotate(360deg); }
+        }
+    </style>
 </body>
 </html>
