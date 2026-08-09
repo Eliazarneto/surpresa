@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossa História</title>
+    <title>Nossa História - Claudia Galindo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;700&family=Parisienne&display=swap');
@@ -107,9 +107,9 @@
         }
 
         .btn-nav {
-            padding: 10px 25px;
+            padding: 10px 20px;
             border-radius: 15px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: #A0AEC0;
             transition: all 0.3s ease;
@@ -288,16 +288,16 @@
                 </div>
                 
                 <p class="text-gray-400 mb-10 max-w-sm mx-auto leading-relaxed font-medium text-center">
-                    Por favor, identifique-se com seu nome completo para acessar nossas memórias.
+                    Por favor, identifique-se com seu nome para acessar nossas memórias.
                 </p>
                 
                 <div class="max-w-xs mx-auto">
                     <input type="text" id="inputNome" 
-                           placeholder="Seu nome completo..." 
+                           placeholder="Seu nome..." 
                            class="w-full p-5 rounded-3xl mb-3 text-center text-lg font-bold outline-none shadow-sm">
                     
                     <div id="error-msg" class="hidden text-red-500 text-xs mb-6 font-bold uppercase tracking-widest animate-pulse text-center">
-                        Acesso negado. Tente novamente, Isabella.
+                        Acesso negado. Tente novamente, Claudia Galindo.
                     </div>
                     
                     <button onclick="submitName()" class="w-full btn-premium">
@@ -309,17 +309,19 @@
             <!-- TELA PRINCIPAL -->
             <div id="screen-main" class="hidden content-wrapper">
                 
-                <!-- Header -->
-                <div class="flex justify-between items-center mb-10 border-b border-gray-50 pb-6">
+                <!-- Header / Navegação dos Capítulos -->
+                <div class="flex justify-between items-center mb-10 border-b border-gray-50 pb-6 flex-wrap gap-2">
                     <div class="flex space-x-1">
                         <button onclick="showChapter(1)" id="btnCap1" class="btn-nav active">I</button>
                         <button onclick="showChapter(2)" id="btnCap2" class="btn-nav">II</button>
+                        <button onclick="showChapter(3)" id="btnCap3" class="btn-nav">III</button>
+                        <button onclick="showChapter(4)" id="btnCap4" class="btn-nav">IV</button>
                     </div>
-                    <span class="script-text text-2xl">E ♥ I</span>
+                    <span class="script-text text-2xl">E ♥ C</span>
                 </div>
 
                 <div id="contador-box" class="mb-8 text-center">
-                    <p class="text-[0.6rem] text-gray-400 uppercase font-bold tracking-[0.3em] mb-2">Segundos de Certeza</p>
+                    <p class="text-[0.6rem] text-gray-400 uppercase font-bold tracking-[0.3em] mb-2">Segundos Desde Que Te Vi Pela Primeira Vez</p>
                     <div id="contador">0 s</div>
                 </div>
 
@@ -337,59 +339,92 @@
 
                 <!-- Dedicatória Fixa -->
                 <div class="text-center mb-12 animate-up">
-                    <span class="script-text text-3xl">Para <span class="nome-dinamico">Isabella</span>, do seu Eliazar</span>
+                    <span class="script-text text-3xl">Para <span class="nome-dinamico">Claudia Galindo</span>, do seu Eliazar</span>
                 </div>
 
-                <!-- Capítulo 1 -->
-                <div id="cap1" class="chapter-content animate-up">
-                    <div class="mb-10">
-                        <h2 class="text-xs font-black text-gray-300 tracking-[0.4em] uppercase mb-2">Capítulo Um</h2>
-                        <span class="script-text text-4xl">Branquinha</span>
-                    </div>
-                    
-                    <p class="mb-8">Nós já nos conhecíamos há muito tempo, sempre com muita coisa em comum, mas parecia que o tempo nunca era o certo. Você sempre sumia, falava pouco, e eu ficava aqui na espera. Mas na última semana, algo mudou. A gente se aproximou de um jeito diferente, começamos a estudar juntos, marcando tempo para um motivar o outro.</p>
-                    
-                    <div class="divider"><span>❦</span></div>
-                    
-                    <p class="mb-8">Tudo começou a caminhar de verdade quando eu, com meu jeito, ofereci aquelas Ritalinas para te ajudar no foco dos estudos. Combinamos de sair, mas confesso que quase desisti: você sumiu um dia antes e no próprio dia do encontro. Achei mesmo que ia cancelar, mas o destino tinha outros planos.</p>
-                    
-                    <p class="mb-8">O dia estava chuvoso e a gente torcendo para o céu abrir. E não é que abriu? O encontro era para as 19:10 (já contando com o seu atraso, claro haha). Quando fui te buscar, ainda tivemos aquele contratempo clássico de cada um estar em uma esquina diferente, mas finalmente nos encontramos.</p>
-                    
-                    <p class="mb-8">O plano era Murici, mas a chuva na estrada nos fez parar em <strong>Branquinha</strong>. Te perguntei se estava com frio, você disse que sim e eu parei para te dar minha jaqueta. Você não quis de primeira, então sugeri explorarmos a cidade. Parei num posto, abasteci e usei a desculpa para perguntar por um barzinho. Foi lá que conhecemos o Pedrinho na porta, e a conversa fluiu tanto que parecia que éramos amigos de infância.</p>
-                    
-                    <p class="mb-8">O bar estava vazio e eu, brincalhão, disse que tinha alugado o lugar só para nós dois — e ainda fiz o Pedrinho confirmar a história! Enquanto você bebia, eu não conseguia parar de te olhar. Pensava no quanto eu era sortudo e no quanto você estava linda. Trocamos muito carinho e a noite estava perfeita.</p>
-                    
-                    <p class="mb-8">Mas o momento que me paralisou foi quando, brincando com o Pedrinho, eu disse: "Tá vendo? E depois essa mulher ainda diz que gosta de mim". Você deu aquele sorriso maravilhoso e soltou um: <span class="text-red-700 font-bold italic">"Gosto não, amo!"</span>. Eu fiquei sem reação, completamente desarmado.</p>
-                    
-                    <p class="mb-8">A noite continuou épica: o vinho que o dono buscou em casa, o Pedrinho fazendo a dona do mercado abrir às 21h só pelo leite condensado... tudo parecia conspirar. Voltamos para União debaixo de chuva, eu me molhei todo, mas com você usando minha jaqueta e a certeza no meu peito de que era você quem eu queria. Aquela noite foi o ponto de partida para eu decidir que faria de tudo por você.</p>
-                    
-                    <div class="text-center mt-12">
-                        <button onclick="showChapter(2)" class="btn-premium pulse-btn">Próximo Capítulo</button>
-                    </div>
-                </div>
+  <!-- Capítulo 1 -->
+<div id="cap1" class="chapter-content animate-up">
+    <div class="mb-10">
+        <h2 class="text-xs font-black text-gray-300 tracking-[0.4em] uppercase mb-2">Capítulo Um</h2>
+        <span class="script-text text-4xl">125 km e a Minha Amarela Chata</span>
+    </div>
+    
+    <p class="mb-8 leading-relaxed">A ansiedade era tanta que eu nem percebi que tinha pego o caminho mais longo. Mas, no fundo, qualquer estrada teria sido curta demais para o tamanho da expectativa que eu carregava no peito. Foram 125 km de estrada rodados com a cabeça a mil por hora, contando os minutos até finalmente encostar a moto no Airbnb e te mandar aquela mensagem avisando que eu tinha chegado.</p>
+    
+    <p class="mb-8 leading-relaxed">Aquele tempo de espera dentro do apartamento pareceu uma eternidade. Eu andava do quarto para a sala, sentava no sofá, levantava de novo, olhava o celular a cada dez segundos... A cabeça criando mil cenários sobre como seria o nosso primeiro momento. Mas aí você chegou no seu carro para me buscar e fomos ao mercado comprar aquele vinho. No segundo em que olhei pra você e vi seu sorriso, todo o peso do mundo e aquela tensão da espera simplesmente evaporaram.</p>
 
-                <!-- Capítulo 2 -->
-                <div id="cap2" class="chapter-content hidden animate-up">
-                    <div class="mb-10">
-                        <h2 class="text-xs font-black text-gray-300 tracking-[0.4em] uppercase mb-2">Capítulo Dois</h2>
-                        <span class="script-text text-4xl">A Escolha</span>
-                    </div>
-                    
-                    <p class="mb-8">No domingo, dia 19, eu tinha aquela viagem de moto marcada com meus amigos, mas a verdade é que eu não conseguia tirar o dia anterior da cabeça. Sabe aquelas Ritalinas que eu deveria ter levado? Pois é... eu "esqueci" propositalmente. Eu precisava de uma desculpa, qualquer uma, para te ver de novo o mais rápido possível.</p>
-                    
-                    <p class="mb-8">Fomos conversando durante o dia e você disse que nos veríamos rapidinho antes de você ir para a chácara com sua família. Quando cheguei para te buscar e te levar até lá, você estava maravilhosa de novo. Você subiu na moto e fomos. Eu até brinquei dizendo que não gostava de andar com você na garupa porque tinha que dirigir "consciente" demais... mal sabia você que o motivo real era o medo de que qualquer coisa acontecesse com você.</p>
-                    
-                    <p class="mb-8">Chegando na chácara, você perguntou se eu queria entrar. Eu disse que sim, mesmo estando de bermuda, chinelo e camisa de time — nada apresentável para conhecer a família, e ainda por cima com cara de cansaço. Mas o destino deu uma segurada: você mesma acabou cancelando o convite para não "roubar a atenção". Confesso que fiquei chateado na hora, mas a sensação passou rápido. Como eu poderia ficar bravo com a mulher por quem eu já estava ficando louco?</p>
-                    
-                    <p class="mb-8">Hoje, enquanto faço os ajustes finais aqui nesse site, o meu coração está a mil. Eu já falei de você para a minha mãe — ela até foi te seguir! Eu te disse que tenho uma surpresa para o dia 21... e agora que você leu até aqui, o site cumpriu o papel dele de te mostrar o quanto você é importante.</p>
+    <p class="mb-8 leading-relaxed">O mundo lá fora desacelerou por completo. Ali, dividindo a mesa, o vinho e a conversa sem pressa, eu descobri algo extremamente raro: ao seu lado, eu podia ser 100% eu mesmo. Sem nenhuma máscara, sem filtros, sem precisar medir palavras. Senti uma leveza absurda, como se já nos conhecêssemos há uma vida inteira. E foi nessa mesma noite que percebi que não queria mais me desgrudar de você — mesmo descobrindo, logo de cara, o quanto você consegue ser a minha 'amarela chata' preferida no mundo.</p>
+    
+    <div class="text-center mt-12">
+        <button onclick="showChapter(2)" class="btn-premium pulse-btn">Próximo Capítulo</button>
+    </div>
+</div>
 
+<!-- Capítulo 2 -->
+<div id="cap2" class="chapter-content hidden animate-up">
+    <div class="mb-10">
+        <h2 class="text-xs font-black text-gray-300 tracking-[0.4em] uppercase mb-2">Capítulo Dois</h2>
+        <span class="script-text text-4xl">Aprendendo a Mudar a Rota</span>
+    </div>
+    
+    <p class="mb-8 leading-relaxed">Nenhuma história que vale a pena ser vivida é feita só de dias ensolarados ou cenários perfeitos. A gente sabia desde o início que não seria uma estrada reta e sem buracos. Nós dois somos intensos, cheios de personalidade e, vamos ser sinceros, dois 'cabeça quente' de primeira categoria. Quando o estresse do dia a dia acumulava, a gente batia de frente e faísca voava longe.</p>
+    
+    <p class="mb-8 leading-relaxed">Já tivemos nossas tempestades, aquelas brigas por mensagem em que a raiva parecia tomar conta de tudo e o orgulho tentava gritar mais alto. Mas o que realmente define a nossa história não é o fato de termos problemas, e sim o que a gente escolhe fazer logo depois que a poeira baixa. Em vez de virarmos as costas, a gente sempre encontrou um jeito de desarmar os impulsos, abaixar a guarda e se ouvir de verdade.</p>
+
+    <p class="mb-8 leading-relaxed">A gente aprendeu — muitas vezes no tranco e na raça — que o nosso carinho e a vontade inegociável de estarmos juntos são infinitamente maiores do que qualquer desentendimento bobo ou estresse de rotina. Cada briga resolvida não nos afastou; serve de prova de que a gente não desiste fácil um do outro.</p>
+
+    <div class="text-center mt-12 flex justify-between items-center">
+        <button onclick="showChapter(1)" class="text-gray-400 text-xs hover:text-red-600 font-bold transition-all">Anterior</button>
+        <button onclick="showChapter(3)" class="btn-premium pulse-btn">Próximo Capítulo</button>
+    </div>
+</div>
+
+<!-- Capítulo 3 -->
+<div id="cap3" class="chapter-content hidden animate-up">
+    <div class="mb-10">
+        <h2 class="text-xs font-black text-gray-300 tracking-[0.4em] uppercase mb-2">Capítulo Três</h2>
+        <span class="script-text text-4xl">Superando o Caos, Escolhendo Você</span>
+    </div>
+    
+    <p class="mb-8 leading-relaxed">A vida real cobra caro. É o trabalho que esgota as energias, a correria insana das obrigações diárias, as responsabilidades pesando nas costas e aquele cansaço mental no fim do dia que faz parecer que a gente não vai dar conta. A rotina tenta, o tempo todo, testar a paciência e desgastar o que temos de mais bonito.</p>
+    
+    <p class="mb-8 leading-relaxed">Mas se tem uma coisa que esses meses todos me provaram é que o que a gente sente não é raso, não é de papel. A gente encarou fases difíceis, dias em que o humor não ajudava e distâncias que pareciam infinitas. Mesmo assim, nada disso foi capaz de minar a base que construímos: uma base de afeto real, cumplicidade e um desejo genuíno de ver o outro crescer e vencer na vida.</p>
+
+    <p class="mb-8 leading-relaxed">Nos dias mais caóticos e barulhentos da minha semana, ter você é o meu ponto de paz. Você é a pessoa que consegue trazer a leveza de volta pra minha vida exatamente quando o resto do mundo parece estar de ponta-cabeça.</p>
+
+    <div class="text-center mt-12 flex justify-between items-center">
+        <button onclick="showChapter(2)" class="text-gray-400 text-xs hover:text-red-600 font-bold transition-all">Anterior</button>
+        <button onclick="showChapter(4)" class="btn-premium pulse-btn">Próximo Capítulo</button>
+    </div>
+</div>
+
+<!-- Capítulo 4 -->
+<div id="cap4" class="chapter-content hidden animate-up">
+    <div class="mb-10">
+        <h2 class="text-xs font-black text-gray-300 tracking-[0.4em] uppercase mb-2">Capítulo Quatro</h2>
+        <span class="script-text text-4xl">O Nosso Próximo Capítulo</span>
+    </div>
+    
+    <p class="mb-8 leading-relaxed">Olhando para trás agora, desde aquele primeiro dia em que rodei aqueles 125 km com o coração na boca até o exato segundo em que você está lendo isso, eu tenho uma certeza absoluta: eu não mudaria absolutamente nada no nosso caminho. Não mudaria nem as vírgulas, nem as curvas difíceis.</p>
+
+    <p class="mb-8 leading-relaxed">Cada gargalhada alta dividida no meio do nada, cada olhar de carinho em silêncio, cada abraço apertado depois de um dia exaustivo, e sim, até cada teimosia e bico que você faz só serviram para me mostrar o quanto você se tornou essencial na minha vida.</p>
+
+    <p class="mb-8 leading-relaxed font-semibold text-white">Construir isso com você me fez ter a certeza de que eu não quero apenas relembrar o que já vivemos, mas sim garantir que a gente continue escrevendo todos os próximos capítulos lado a lado, com mais maturidade, mais leveza e muito mais amor.</p>
+
+    <div class="text-center mt-12 flex justify-between items-center">
+        <button onclick="showChapter(3)" class="text-gray-400 text-xs hover:text-red-600 font-bold transition-all">Anterior</button>
+        <!-- Aqui você pode colocar o botão final para abrir o modal do pedido -->
+        <button onclick="openProposalModal()" class="btn-premium pulse-btn">Sim, eu aceito!</button>
+    </div>
+</div>
                     <div class="instruction-box text-center">
                         <div class="seal">♥</div>
                         <p class="text-3xl text-red-700 font-black uppercase tracking-tighter mb-4">Guarde o celular</p>
                         <p class="text-xl text-gray-600 font-semibold script-text">e olha bem nos meus olhos agora.</p>
                     </div>
                     
-                    <div class="text-center mt-12">
+                    <div class="text-center mt-12 flex justify-between items-center">
+                        <button onclick="showChapter(3)" class="text-gray-400 text-xs hover:text-red-600 font-bold transition-all">Anterior</button>
                         <button onclick="showChapter(1)" class="text-gray-300 text-xs hover:text-red-400 font-bold transition-all">REVER CAPÍTULO 1</button>
                     </div>
                 </div>
@@ -399,8 +434,9 @@
     </div>
 
     <script>
-        const START_DATE = new Date('2026-04-18T20:00:00');
-        const NOME_COMPLETO_ALVO = "Maria Isabella Beserra de Melo";
+        // Data exata configurada para 26 de Julho de 2025 às 17:45:00
+        const START_DATE = new Date('2025-07-26T17:45:00');
+        const NOME_COMPLETO_ALVO = "Claudia Galindo";
 
         // Partículas Flutuantes
         function createParticles() {
@@ -423,7 +459,7 @@
         window.onload = () => {
             createParticles();
             const salvo = localStorage.getItem('nomeDela');
-            if(salvo && salvo.toLowerCase() === NOME_COMPLETO_ALVO.toLowerCase()) {
+            if(salvo && salvo.toLowerCase().includes("claudia")) {
                 document.getElementById('screen-auth').classList.add('hidden');
                 document.getElementById('screen-main').classList.remove('hidden');
                 atualizarNomesDinamicos(salvo);
@@ -435,7 +471,7 @@
             const nomeInput = document.getElementById('inputNome').value.trim();
             const errorEl = document.getElementById('error-msg');
             
-            if(nomeInput.toLowerCase() === NOME_COMPLETO_ALVO.toLowerCase()) {
+            if(nomeInput.toLowerCase().includes("claudia") || nomeInput.toLowerCase() === NOME_COMPLETO_ALVO.toLowerCase()) {
                 localStorage.setItem('nomeDela', nomeInput);
                 document.getElementById('screen-auth').classList.add('hidden');
                 document.getElementById('screen-main').classList.remove('hidden');
@@ -448,23 +484,27 @@
         }
 
         function atualizarNomesDinamicos(nome) {
-            // Se for o nome completo alvo, usamos Isabella por padrão
-            let displayName = "Isabella";
-            if (nome.toLowerCase() !== NOME_COMPLETO_ALVO.toLowerCase()) {
-                displayName = nome.split(' ')[0];
+            let displayName = "Claudia Galindo";
+            if (nome.trim().length > 0) {
+                displayName = nome;
             }
             const elementos = document.querySelectorAll('.nome-dinamico');
             elementos.forEach(el => el.textContent = displayName);
         }
 
         function showChapter(n) {
-            document.getElementById('cap1').classList.add('hidden');
-            document.getElementById('cap2').classList.add('hidden');
-            document.getElementById('btnCap1').classList.remove('active');
-            document.getElementById('btnCap2').classList.remove('active');
+            for (let i = 1; i <= 4; i++) {
+                const cap = document.getElementById('cap' + i);
+                const btn = document.getElementById('btnCap' + i);
+                if (cap) cap.classList.add('hidden');
+                if (btn) btn.classList.remove('active');
+            }
             
-            document.getElementById('cap' + n).classList.remove('hidden');
-            document.getElementById('btnCap' + n).classList.add('active');
+            const targetCap = document.getElementById('cap' + n);
+            const targetBtn = document.getElementById('btnCap' + n);
+            if (targetCap) targetCap.classList.remove('hidden');
+            if (targetBtn) targetBtn.classList.add('active');
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -477,8 +517,8 @@
                     document.getElementById('contador').innerText = `O tempo parou para nós...`;
                 } else {
                     const totalSeconds = Math.floor(diff / 1000);
-                    // Formata com separador de milhar para facilitar a leitura
-                    document.getElementById('contador').innerText = `${totalSeconds.toLocaleString()} s`;
+                    // Formata em segundos com separador de milhar
+                    document.getElementById('contador').innerText = `${totalSeconds.toLocaleString('pt-BR')} s`;
                 }
             }, 1000);
         }
@@ -491,8 +531,10 @@
         // Lógica de animação das barras de áudio
         const audio = document.getElementById('bgMusic');
         const bars = document.querySelectorAll('.bar');
-        audio.onplay = () => bars.forEach(b => b.style.animationPlayState = 'running');
-        audio.onpause = () => bars.forEach(b => b.style.animationPlayState = 'paused');
+        if (audio) {
+            audio.onplay = () => bars.forEach(b => b.style.animationPlayState = 'running');
+            audio.onpause = () => bars.forEach(b => b.style.animationPlayState = 'paused');
+        }
     </script>
 
     <style>
